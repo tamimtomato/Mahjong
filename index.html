@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Mahjongg in Angular.JS</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div ng-app="mahjongg" id="game">
+  <div ng-init="initialize()" ng-controller="BoardController">
+    <span
+          ng-style="{
+                    left: 50 + 18 * tile.position.x+'px',
+                    top:  48 + 24 * tile.position.y+'px',
+                    'z-index': 2 * tile.position.z + 1,
+                    cursor: isClickable?'pointer':'auto'                    
+                    }"
+          class="tile tile-{{tile.tile}}"
+          ng-class="{
+                    clickable:isClickable,
+                    selected: isSelected}"
+          ng-controller="TileController" 
+          ng-repeat="tile in tiles"
+          ng-click="clickTile()"></span>
+    <h1 ng-if="tiles.length === 0">You won!</h1>
+    <button ng-click="initialize()">New Game</button>
+  </div>
+</div>
+<!-- partial -->
+  <script src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
